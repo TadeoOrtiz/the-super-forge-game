@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ItemRecipe" load_steps=4 format=3 uid="uid://bmxuy57vl4ifd"]
+
+[ext_resource type="Script" path="res://scripts/resources/item_recipe.gd" id="1_1q22k"]
+[ext_resource type="Resource" uid="uid://ddd5pmp8vfwa5" path="res://items/materials/iron.tres" id="1_nqgud"]
+[ext_resource type="Resource" uid="uid://c544xv58pedrg" path="res://items/rifle.tres" id="2_q45jb"]
+
+[resource]
+script = ExtResource("1_1q22k")
+recipe_name = "rifle"
+ingredients = Array[Resource("res://scripts/resources/item.gd")]([ExtResource("1_nqgud"), ExtResource("1_nqgud")])
+result = Array[Resource("res://scripts/resources/item.gd")]([ExtResource("2_q45jb")])

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://c544xv58pedrg"]
+
+[ext_resource type="Texture2D" uid="uid://cfv5rhfi13jpq" path="res://textures/weapons/rifle_01.png" id="1_bau5h"]
+[ext_resource type="Script" path="res://scripts/resources/item.gd" id="1_i24tf"]
+
+[resource]
+script = ExtResource("1_i24tf")
+id = "rifle"
+name = "RIFLE 8v"
+icon = ExtResource("1_bau5h")
