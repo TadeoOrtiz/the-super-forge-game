@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bx7brsixnmjle"
-path="res://.godot/imported/knifel.png-913c43ae4f12a7611341d5f6600678a6.ctex"
+uid="uid://do5aq3vwm184x"
+path="res://.godot/imported/enemy.png-4bf7c0dfacc30f0c4f1d6aabaae12aa1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/knifel.png"
-dest_files=["res://.godot/imported/knifel.png-913c43ae4f12a7611341d5f6600678a6.ctex"]
+source_file="res://textures/entities/enemy.png"
+dest_files=["res://.godot/imported/enemy.png-4bf7c0dfacc30f0c4f1d6aabaae12aa1.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cfv5rhfi13jpq"
-path="res://.godot/imported/rifle_01.png-4a49b644cafc731fd24d5a23084b54cd.ctex"
+uid="uid://8mu0wo74np68"
+path="res://.godot/imported/tin_ingot.png-1923e2ea4df14b4c4eaac25cf0331f5e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/rifle_01.png"
-dest_files=["res://.godot/imported/rifle_01.png-4a49b644cafc731fd24d5a23084b54cd.ctex"]
+source_file="res://textures/items/tin_ingot.png"
+dest_files=["res://.godot/imported/tin_ingot.png-1923e2ea4df14b4c4eaac25cf0331f5e.ctex"]
 
 [params]
 

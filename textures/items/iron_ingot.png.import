@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b1inetyoyio8x"
-path="res://.godot/imported/bullet_proyectile_01.png-4bf5c25cf9d201a18d237e200fa94608.ctex"
+uid="uid://d0epptxu2yvkn"
+path="res://.godot/imported/iron_ingot.png-96771f8bcc060b2d738e51de1ac7c9df.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/bullet_proyectile_01.png"
-dest_files=["res://.godot/imported/bullet_proyectile_01.png-4bf5c25cf9d201a18d237e200fa94608.ctex"]
+source_file="res://textures/items/iron_ingot.png"
+dest_files=["res://.godot/imported/iron_ingot.png-96771f8bcc060b2d738e51de1ac7c9df.ctex"]
 
 [params]
 

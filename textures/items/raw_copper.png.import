@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://6dojtxt2q8jv"
-path="res://.godot/imported/shotgun.png-a0f4f6d6ba98bbfa074cdb1a255b5ebe.ctex"
+uid="uid://we2ovqp40c83"
+path="res://.godot/imported/raw_copper.png-c958539dba24763d1ad45110741803cd.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/shotgun.png"
-dest_files=["res://.godot/imported/shotgun.png-a0f4f6d6ba98bbfa074cdb1a255b5ebe.ctex"]
+source_file="res://textures/items/raw_copper.png"
+dest_files=["res://.godot/imported/raw_copper.png-c958539dba24763d1ad45110741803cd.ctex"]
 
 [params]
 

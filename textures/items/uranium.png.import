@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bcr10mqtgeeus"
-path="res://.godot/imported/bullet_proyectile_02.png-c9ce819fc697a4fc267ceb5add29977c.ctex"
+uid="uid://i7p5lv4w7cum"
+path="res://.godot/imported/uranium.png-dc9f56526f2527dc8cd7cc470b103779.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/bullet_proyectile_02.png"
-dest_files=["res://.godot/imported/bullet_proyectile_02.png-c9ce819fc697a4fc267ceb5add29977c.ctex"]
+source_file="res://textures/items/uranium.png"
+dest_files=["res://.godot/imported/uranium.png-dc9f56526f2527dc8cd7cc470b103779.ctex"]
 
 [params]
 

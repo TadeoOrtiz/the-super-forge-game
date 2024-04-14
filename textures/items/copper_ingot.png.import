@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bboqg2hyvmouy"
-path="res://.godot/imported/rifle_02.png-a4c7f8d6c344060a973341e879dc8227.ctex"
+uid="uid://bd5vmacmarfr1"
+path="res://.godot/imported/copper_ingot.png-74b271ed306e7c6ced2cc767889ad4ad.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/rifle_02.png"
-dest_files=["res://.godot/imported/rifle_02.png-a4c7f8d6c344060a973341e879dc8227.ctex"]
+source_file="res://textures/items/copper_ingot.png"
+dest_files=["res://.godot/imported/copper_ingot.png-74b271ed306e7c6ced2cc767889ad4ad.ctex"]
 
 [params]
 
