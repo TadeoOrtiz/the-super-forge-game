@@ -13,6 +13,27 @@ config_version=5
 run/main_scene="res://scenes/test_room.tscn"
 config/features=PackedStringArray("4.2")
 
+[display]
+
+window/vsync/vsync_mode=0
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/godot_resource_groups/plugin.cfg")
+
+[gui]
+
+theme/vsync/vsync_mode=1
+
+[layer_names]
+
+2d_physics/layer_1="world"
+2d_physics/layer_5="player"
+2d_physics/layer_6="item"
+2d_physics/layer_7="interactable"
+2d_physics/layer_9="enemy"
+2d_physics/layer_13="projectile"
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
