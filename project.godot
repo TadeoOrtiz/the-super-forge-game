@@ -13,6 +13,10 @@ config_version=5
 run/main_scene="res://scenes/test_room.tscn"
 config/features=PackedStringArray("4.2")
 
+[autoload]
+
+ResourcesManager="*res://scripts/autoloads/resources_manager.gd"
+
 [display]
 
 window/vsync/vsync_mode=0
