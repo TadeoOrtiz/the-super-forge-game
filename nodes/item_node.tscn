@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://c1eai6g204iw"]
+
+[ext_resource type="Script" path="res://scripts/nodes/item_node.gd" id="1_036kd"]
+[ext_resource type="Resource" uid="uid://ckvwailyx0qn" path="res://items/knife.tres" id="2_gwlcn"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4pynx"]
+
+[node name="ItemNode" type="Area2D"]
+collision_layer = 32
+collision_mask = 16
+script = ExtResource("1_036kd")
+item_resource = ExtResource("2_gwlcn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_4pynx")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+unique_name_in_owner = true

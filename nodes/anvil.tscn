@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://bpefgq0bmv2m"]
+
+[ext_resource type="Script" path="res://scripts/nodes/anvil.gd" id="1_s6r1a"]
+[ext_resource type="Texture2D" uid="uid://dbkbuma07a2gx" path="res://textures/anvil.png" id="1_v150i"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c7c73"]
+size = Vector2(16, 16)
+
+[node name="Anvil" type="StaticBody2D"]
+collision_layer = 65
+collision_mask = 16
+script = ExtResource("1_s6r1a")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_c7c73")
+
+[node name="Anvil" type="Sprite2D" parent="."]
+texture = ExtResource("1_v150i")
