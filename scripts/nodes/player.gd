@@ -46,7 +46,7 @@ func _physics_process(_delta: float) -> void:
     
     move_and_slide()
 
-func _input(event: InputEvent) -> void:
+func _unhandled_key_input(event: InputEvent) -> void:
     if event is InputEventMouseButton:
         if event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
             shoot()
@@ -67,11 +67,15 @@ func update_ae():
 #endregion
 
 #region Private Methods
-func _on_interact(interactable: Node) -> void:
+func _on_interact_entered(interactable: Node) -> void:
     if interactable is ItemNode:
         _inventory.append(interactable.on_pickup(self))
         item_pickup_sound.play()
     elif interactable is Anvil:
-        print("ANVIL")
+        interactable.open()
+
+func _on_interact_exited(interactable: Node) -> void:
+    if interactable is Anvil:
+        interactable.close()
 
 #endregion

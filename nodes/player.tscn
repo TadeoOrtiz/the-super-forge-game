@@ -110,5 +110,7 @@ shape = SubResource("CircleShape2D_roweo")
 [node name="ItemPickupSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("5_h0kug")
 
-[connection signal="area_entered" from="InteractArea" to="." method="pick_item"]
-[connection signal="body_entered" from="InteractArea" to="." method="_on_interact"]
+[connection signal="area_entered" from="InteractArea" to="." method="_on_interact_entered"]
+[connection signal="area_exited" from="InteractArea" to="." method="_on_interact_exited"]
+[connection signal="body_entered" from="InteractArea" to="." method="_on_interact_entered"]
+[connection signal="body_exited" from="InteractArea" to="." method="_on_interact_exited"]
