@@ -9,7 +9,7 @@ extends CharacterBody2D
 
 # Private vars
 var _pointing_direction: Vector2
-var _inventory: Array[Item]
+var _inventory := Inventory.new(10)
 
 # Onready vars
 @onready var hand: Marker2D = %Hand
@@ -46,7 +46,7 @@ func _physics_process(_delta: float) -> void:
     
     move_and_slide()
 
-func _unhandled_key_input(event: InputEvent) -> void:
+func _unhandled_input(event: InputEvent) -> void:
     if event is InputEventMouseButton:
         if event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
             shoot()
@@ -58,6 +58,7 @@ func shoot():
     var bullet = load("res://nodes/bullet.tscn").instantiate()
     bullet.position = global_position
     bullet.rotation = hand.rotation
+    print(_inventory.items)
     add_sibling(bullet)
 
 func update_ae():
@@ -72,10 +73,12 @@ func _on_interact_entered(interactable: Node) -> void:
         _inventory.append(interactable.on_pickup(self))
         item_pickup_sound.play()
     elif interactable is Anvil:
+        interactable.target = self
         interactable.open()
 
 func _on_interact_exited(interactable: Node) -> void:
     if interactable is Anvil:
+        interactable.target = null
         interactable.close()
 
 #endregion
