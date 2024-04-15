@@ -70,7 +70,7 @@ func update_ae():
 #region Private Methods
 func _on_interact_entered(interactable: Node) -> void:
     if interactable is ItemNode:
-        _inventory.append(interactable.on_pickup(self))
+        _inventory.add_item(interactable.on_pickup(self))
         item_pickup_sound.play()
     elif interactable is Anvil:
         interactable.target = self
