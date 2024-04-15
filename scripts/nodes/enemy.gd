@@ -5,6 +5,9 @@ const ITEM_NODE = preload("res://nodes/item_node.tscn")
 
 @export var loot : Item
 
+func _physics_process(delta):
+    velocity = -global_position.normalized() * 40
+    move_and_slide()
 
 func on_death(target : Node):
     if target is Projectile:
