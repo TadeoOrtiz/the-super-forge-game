@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cs6wpuvpp18kf"]
 
-[ext_resource type="PackedScene" uid="uid://copvvn4iajrk5" path="res://nodes/gui/inventory_slot.tscn" id="1_bkx7j"]
+[ext_resource type="Script" path="res://scripts/gui/anvil_gui.gd" id="1_fkxcd"]
 
 [node name="AnvilGui" type="Control"]
 layout_mode = 3
@@ -9,6 +9,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_fkxcd")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 1
@@ -27,16 +28,12 @@ layout_mode = 2
 text = "Recipes"
 horizontal_alignment = 1
 
-[node name="ItemList" type="ItemList" parent="HBoxContainer/VBoxContainer"]
+[node name="RecipeList" type="ItemList" parent="HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
 max_text_lines = 2
 auto_height = true
-item_count = 4
-item_0/text = "recipe"
-item_1/text = "recipe largaakjsdjasjdjaskd"
-item_2/text = "asdasd"
-item_3/text = "gdfgfg"
 
 [node name="Panel" type="Panel" parent="HBoxContainer"]
 layout_mode = 2
@@ -61,30 +58,25 @@ layout_mode = 2
 layout_mode = 2
 text = "Ingredients"
 
-[node name="GridContainer" type="GridContainer" parent="HBoxContainer/Panel/MarginContainer/VBoxContainer"]
+[node name="IngredientContainer" type="GridContainer" parent="HBoxContainer/Panel/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 columns = 5
-
-[node name="InventorySlot" parent="HBoxContainer/Panel/MarginContainer/VBoxContainer/GridContainer" instance=ExtResource("1_bkx7j")]
-layout_mode = 2
-
-[node name="InventorySlot2" parent="HBoxContainer/Panel/MarginContainer/VBoxContainer/GridContainer" instance=ExtResource("1_bkx7j")]
-layout_mode = 2
-
-[node name="InventorySlot3" parent="HBoxContainer/Panel/MarginContainer/VBoxContainer/GridContainer" instance=ExtResource("1_bkx7j")]
-layout_mode = 2
-
-[node name="InventorySlot4" parent="HBoxContainer/Panel/MarginContainer/VBoxContainer/GridContainer" instance=ExtResource("1_bkx7j")]
-layout_mode = 2
 
 [node name="Label2" type="Label" parent="HBoxContainer/Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "Result
 "
 
-[node name="GridContainer2" type="GridContainer" parent="HBoxContainer/Panel/MarginContainer/VBoxContainer"]
+[node name="ResultContainer" type="GridContainer" parent="HBoxContainer/Panel/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 columns = 5
 
-[node name="InventorySlot5" parent="HBoxContainer/Panel/MarginContainer/VBoxContainer/GridContainer2" instance=ExtResource("1_bkx7j")]
+[node name="ForgeButton" type="Button" parent="HBoxContainer/Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 10
+text = "Forge"
+
+[connection signal="item_selected" from="HBoxContainer/VBoxContainer/RecipeList" to="." method="_on_recipe_list_item_selected"]
+[connection signal="pressed" from="HBoxContainer/Panel/MarginContainer/VBoxContainer/ForgeButton" to="." method="_on_forge_button_pressed"]

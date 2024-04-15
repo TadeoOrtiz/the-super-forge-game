@@ -7,4 +7,5 @@
 script = ExtResource("1_i24tf")
 id = "rifle"
 name = "RIFLE 8v"
+is_stackeable = false
 icon = ExtResource("1_bau5h")
