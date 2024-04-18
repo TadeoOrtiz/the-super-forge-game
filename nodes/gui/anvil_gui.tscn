@@ -74,9 +74,9 @@ layout_mode = 2
 columns = 5
 
 [node name="ForgeButton" type="Button" parent="HBoxContainer/Panel/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 10
 text = "Forge"
 
 [connection signal="item_selected" from="HBoxContainer/VBoxContainer/RecipeList" to="." method="_on_recipe_list_item_selected"]
-[connection signal="pressed" from="HBoxContainer/Panel/MarginContainer/VBoxContainer/ForgeButton" to="." method="_on_forge_button_pressed"]

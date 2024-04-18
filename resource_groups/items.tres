@@ -7,4 +7,4 @@ script = ExtResource("1_ofacs")
 base_folder = "res://items"
 includes = Array[String](["**.tres"])
 excludes = Array[String]([])
-paths = Array[String](["res://items/knife.tres", "res://items/rifle.tres", "res://items/materials/iron.tres"])
+paths = Array[String](["res://items/knife.tres", "res://items/rifle_01.tres", "res://items/materials/iron.tres"])

@@ -1,7 +1,8 @@
-extends Node2D
+class_name EnemySpawner
+extends Node
 
 @export var spawns: Array[SpawnInfo] = []
-@export var player: Node
+@export var player: Player
 
 @export var time = 0
 
@@ -18,20 +19,20 @@ func _on_timer_timeout():
 				i.spawn_delay_counter = 0
 				var new_enemy = i.enemy
 				var counter = 0
-				while  counter < i.enemy_num:
+				while counter < i.enemy_num:
 					var enemy_spawn = new_enemy.instantiate()
 					enemy_spawn.global_position = get_random_position()
-					add_child(enemy_spawn)
+					add_sibling(enemy_spawn)
 					counter += 1
-	emit_signal("changetime",time)
+	emit_signal("changetime", time)
 
 func get_random_position():
-	var vpr = get_viewport_rect().size * randf_range(1.1,1.4)
-	var top_left = Vector2(player.global_position.x - vpr.x/2, player.global_position.y - vpr.y/2)
-	var top_right = Vector2(player.global_position.x + vpr.x/2, player.global_position.y - vpr.y/2)
-	var bottom_left = Vector2(player.global_position.x - vpr.x/2, player.global_position.y + vpr.y/2)
-	var bottom_right = Vector2(player.global_position.x + vpr.x/2, player.global_position.y + vpr.y/2)
-	var pos_side = ["up","down","right","left"].pick_random()
+	var vpr = get_viewport().get_visible_rect().size * randf_range(1.1, 1.4)
+	var top_left = Vector2(player.global_position.x - vpr.x / 2, player.global_position.y - vpr.y / 2)
+	var top_right = Vector2(player.global_position.x + vpr.x / 2, player.global_position.y - vpr.y / 2)
+	var bottom_left = Vector2(player.global_position.x - vpr.x / 2, player.global_position.y + vpr.y / 2)
+	var bottom_right = Vector2(player.global_position.x + vpr.x / 2, player.global_position.y + vpr.y / 2)
+	var pos_side = ["up", "down", "right", "left"].pick_random()
 	var spawn_pos1 = Vector2.ZERO
 	var spawn_pos2 = Vector2.ZERO
 	
@@ -50,5 +51,5 @@ func get_random_position():
 			spawn_pos2 = bottom_left
 	
 	var x_spawn = randf_range(spawn_pos1.x, spawn_pos2.x)
-	var y_spawn = randf_range(spawn_pos1.y,spawn_pos2.y)
-	return Vector2(x_spawn,y_spawn)
+	var y_spawn = randf_range(spawn_pos1.y, spawn_pos2.y)
+	return Vector2(x_spawn, y_spawn)

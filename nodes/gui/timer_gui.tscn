@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=3 uid="uid://dqkm0gcabnnvx"]
+
+[ext_resource type="Script" path="res://scripts/gui/timer_gui.gd" id="1_7prv2"]
+[ext_resource type="Texture2D" uid="uid://dfrqj5ayoyl20" path="res://07.png" id="1_q4ecx"]
+[ext_resource type="FontFile" uid="uid://b0rn1hvv7ka54" path="res://Minecraft.ttf" id="2_s0qfq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vkjds"]
+atlas = ExtResource("1_q4ecx")
+region = Rect2(0, 0, 16, 16)
+
+[node name="TimerGUI" type="VBoxContainer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 21.0
+offset_bottom = 34.0
+grow_horizontal = 2
+pivot_offset = Vector2(20, 0)
+script = ExtResource("1_7prv2")
+
+[node name="Progess" type="TextureProgressBar" parent="."]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+value = 90.0
+fill_mode = 4
+nine_patch_stretch = true
+texture_progress = SubResource("AtlasTexture_vkjds")
+
+[node name="Timer" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_s0qfq")
+theme_override_font_sizes/font_size = 16
+text = "20:00"
+horizontal_alignment = 1

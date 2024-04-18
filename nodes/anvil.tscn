@@ -7,10 +7,13 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c7c73"]
 size = Vector2(16, 16)
 
-[node name="Anvil" type="StaticBody2D"]
+[node name="Anvil" type="StaticBody2D" node_paths=PackedStringArray("canvas_layer", "gui")]
+disable_mode = 1
 collision_layer = 65
 collision_mask = 16
 script = ExtResource("1_s6r1a")
+canvas_layer = NodePath("CanvasLayer")
+gui = NodePath("CanvasLayer/MarginContainer/AnvilGui")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_c7c73")
@@ -21,21 +24,13 @@ texture = ExtResource("1_v150i")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 visible = false
 
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 1
-color = Color(0, 0, 0, 0.392157)
-
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
-anchors_preset = 15
+anchors_preset = 1
+anchor_left = 1.0
 anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_left = -824.0
+offset_bottom = 486.0
+grow_horizontal = 0
 theme_override_constants/margin_left = 16
 theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 16
@@ -44,5 +39,3 @@ theme_override_constants/margin_bottom = 16
 [node name="AnvilGui" parent="CanvasLayer/MarginContainer" instance=ExtResource("3_slkwj")]
 unique_name_in_owner = true
 layout_mode = 2
-
-[connection signal="item_forged" from="CanvasLayer/MarginContainer/AnvilGui" to="." method="_on_anvil_gui_item_forged"]

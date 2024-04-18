@@ -1,13 +1,6 @@
 class_name Projectile
-extends Area2D
+extends HitBoxNode
 
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
-	var direction : Vector2 = Vector2.RIGHT
+	var direction: Vector2 = Vector2.RIGHT
 	global_position += direction.rotated(rotation) * 500 * delta

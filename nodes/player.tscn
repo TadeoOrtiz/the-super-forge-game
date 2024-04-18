@@ -1,13 +1,13 @@
-[gd_scene load_steps=12 format=3 uid="uid://cdbxpauih6rdh"]
+[gd_scene load_steps=15 format=3 uid="uid://cdbxpauih6rdh"]
 
 [ext_resource type="Script" path="res://scripts/nodes/player.gd" id="1_i5wws"]
-[ext_resource type="Resource" uid="uid://c544xv58pedrg" path="res://items/rifle.tres" id="2_187gt"]
 [ext_resource type="Texture2D" uid="uid://cm6rr746va5qf" path="res://textures/entities/player.png" id="3_8gjlq"]
-[ext_resource type="Texture2D" uid="uid://cor7v5m01iwfo" path="res://textures/weapons/pistol.png" id="4_5juaq"]
-[ext_resource type="AudioStream" uid="uid://57cce450pgjc" path="res://sounds/item_pickup.wav" id="5_h0kug"]
+[ext_resource type="AudioStream" uid="uid://57cce450pgjc" path="res://sounds/item_pickup.wav" id="3_m4kv2"]
+[ext_resource type="PackedScene" uid="uid://cnrs2rondihqh" path="res://nodes/hurt_box.tscn" id="5_uhg0a"]
+[ext_resource type="PackedScene" uid="uid://ufktyx8vw7em" path="res://nodes/gui/player_inventory_interface.tscn" id="6_mywwb"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_s4a3s"]
-radius = 1.0
+radius = 3.0
 height = 8.0
 
 [sub_resource type="Animation" id="Animation_xcjyl"]
@@ -66,14 +66,22 @@ _data = {
 "walk": SubResource("Animation_m2cag")
 }
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_roweo"]
-radius = 30.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o4876"]
+size = Vector2(9, 16)
 
-[node name="Player" type="CharacterBody2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_roweo"]
+radius = 9.05539
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xurj0"]
+bg_color = Color(0.25098, 0.0509804, 0.00784314, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hosa8"]
+bg_color = Color(0.933333, 0, 0.0117647, 1)
+
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
 collision_layer = 16
 collision_mask = 257
 script = ExtResource("1_i5wws")
-gun = ExtResource("2_187gt")
 
 [node name="Sprite" type="Sprite2D" parent="."]
 unique_name_in_owner = true
@@ -82,7 +90,7 @@ texture = ExtResource("3_8gjlq")
 hframes = 9
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -1)
+position = Vector2(0, -3)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_s4a3s")
 
@@ -92,13 +100,24 @@ libraries = {
 "": SubResource("AnimationLibrary_guhtt")
 }
 
+[node name="ItemPickupSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_m4kv2")
+panning_strength = 3.0
+area_mask = 16
+
 [node name="Hand" type="Marker2D" parent="."]
 unique_name_in_owner = true
 position = Vector2(0, -7)
 
-[node name="Gun" type="Sprite2D" parent="Hand"]
-position = Vector2(9, 0)
-texture = ExtResource("4_5juaq")
+[node name="HurtBox" parent="." instance=ExtResource("5_uhg0a")]
+position = Vector2(0, -8)
+collision_layer = 16
+collision_mask = 16
+mode = 0
+disabled_time = 0.5
+
+[node name="CollisionShape2D" parent="HurtBox" index="0"]
+shape = SubResource("RectangleShape2D_o4876")
 
 [node name="InteractArea" type="Area2D" parent="."]
 collision_layer = 16
@@ -107,10 +126,30 @@ collision_mask = 96
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractArea"]
 shape = SubResource("CircleShape2D_roweo")
 
-[node name="ItemPickupSound" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("5_h0kug")
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
 
+[node name="PlayerInventoryInterface" parent="CanvasLayer" node_paths=PackedStringArray("player") instance=ExtResource("6_mywwb")]
+unique_name_in_owner = true
+visible = false
+player = NodePath("../..")
+
+[node name="HealthBar" type="ProgressBar" parent="CanvasLayer"]
+unique_name_in_owner = true
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -27.0
+offset_right = 327.0
+grow_vertical = 0
+theme_override_styles/background = SubResource("StyleBoxFlat_xurj0")
+theme_override_styles/fill = SubResource("StyleBoxFlat_hosa8")
+value = 50.0
+show_percentage = false
+
+[connection signal="hurt" from="HurtBox" to="." method="_on_hurt_box_hurt"]
 [connection signal="area_entered" from="InteractArea" to="." method="_on_interact_entered"]
 [connection signal="area_exited" from="InteractArea" to="." method="_on_interact_exited"]
 [connection signal="body_entered" from="InteractArea" to="." method="_on_interact_entered"]
 [connection signal="body_exited" from="InteractArea" to="." method="_on_interact_exited"]
+
+[editable path="HurtBox"]
