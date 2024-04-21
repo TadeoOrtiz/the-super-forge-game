@@ -1,6 +1,7 @@
-[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://po7p4wwb5ls"]
+[gd_resource type="TileSet" load_steps=5 format=3 uid="uid://po7p4wwb5ls"]
 
 [ext_resource type="Texture2D" uid="uid://0h78u7go2bfg" path="res://textures/tiles/orange_tiles.png" id="1_oohwx"]
+[ext_resource type="Texture2D" uid="uid://bn3kxtt5gqvwf" path="res://textures/tiles/tiles.png" id="2_vl0ux"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_d8her"]
 texture = ExtResource("1_oohwx")
@@ -72,8 +73,27 @@ texture = ExtResource("1_oohwx")
 2:2/0/terrains_peering_bit/top_left_corner = 0
 2:2/0/terrains_peering_bit/top_side = 0
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2y1io"]
+texture = ExtResource("2_vl0ux")
+0:0/0 = 0
+1:0/0 = 0
+1:0/0/probability = 0.1
+2:0/0 = 0
+2:0/0/probability = 0.1
+0:1/0 = 0
+0:1/0/probability = 0.1
+1:1/0 = 0
+1:1/0/probability = 0.1
+2:1/0 = 0
+2:1/0/probability = 0.1
+0:2/0 = 0
+0:2/0/probability = 0.1
+1:2/0 = 0
+1:2/0/probability = 0.1
+
 [resource]
 terrain_set_0/mode = 0
 terrain_set_0/terrain_0/name = "OrangeTile"
 terrain_set_0/terrain_0/color = Color(0.941176, 0.423529, 0.152941, 1)
 sources/0 = SubResource("TileSetAtlasSource_d8her")
+sources/1 = SubResource("TileSetAtlasSource_2y1io")

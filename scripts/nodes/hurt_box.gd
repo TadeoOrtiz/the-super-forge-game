@@ -10,6 +10,10 @@ signal hurt(value: float)
 
 @export var mode := HURT_BOX_MODE.Always
 @export_range(0.001, 2) var disabled_time: float = 0.001
+@export var disabled: bool:
+	set(value):
+		disabled = value
+		$CollisionShape2D.call_deferred("set", "disabled", disabled)
 
 @onready var collision: CollisionShape2D = %CollisionShape2D
 @onready var disabled_timer: Timer = %DisableTimer

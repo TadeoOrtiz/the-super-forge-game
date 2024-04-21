@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="Weapon" load_steps=5 format=3 uid="uid://c44safbmw7dxn"]
+
+[ext_resource type="Script" path="res://scripts/resources/weapon.gd" id="1_1vlmh"]
+[ext_resource type="PackedScene" uid="uid://dx5f3flrg1odj" path="res://nodes/bullets/shotgun_bullet.tscn" id="1_ac0ts"]
+[ext_resource type="Texture2D" uid="uid://6dojtxt2q8jv" path="res://textures/weapons/shotgun.png" id="1_qulgt"]
+[ext_resource type="PackedScene" uid="uid://oytivm2ngemt" path="res://nodes/weapons_models/shotgun.tscn" id="2_aod0d"]
+
+[resource]
+script = ExtResource("1_1vlmh")
+model = ExtResource("2_aod0d")
+bullet = ExtResource("1_ac0ts")
+dispersion = 15.0
+shoot_type = 0
+id = "shotgun"
+name = "Shot-Gun"
+is_stackeable = false
+icon = ExtResource("1_qulgt")
+slot_type = 1

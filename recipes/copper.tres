@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="ItemRecipe" load_steps=7 format=3 uid="uid://dy0q387ucv0fe"]
+
+[ext_resource type="Script" path="res://scripts/resources/item_recipe.gd" id="1_jqbsd"]
+[ext_resource type="Resource" uid="uid://ddd5pmp8vfwa5" path="res://items/materials/iron.tres" id="1_l1ksl"]
+[ext_resource type="Script" path="res://scripts/resources/slot.gd" id="2_eoark"]
+[ext_resource type="Resource" uid="uid://8js2lpcgt3dr" path="res://items/materials/copper.tres" id="3_1ci4y"]
+
+[sub_resource type="Resource" id="Resource_j5wqv"]
+script = ExtResource("2_eoark")
+item = ExtResource("1_l1ksl")
+quantity = 5
+slot_type = 0
+
+[sub_resource type="Resource" id="Resource_xe70d"]
+script = ExtResource("2_eoark")
+item = ExtResource("3_1ci4y")
+quantity = 2
+slot_type = 0
+
+[resource]
+script = ExtResource("1_jqbsd")
+recipe_name = "Copper"
+ingredients = Array[ExtResource("2_eoark")]([SubResource("Resource_j5wqv")])
+results = Array[ExtResource("2_eoark")]([SubResource("Resource_xe70d")])

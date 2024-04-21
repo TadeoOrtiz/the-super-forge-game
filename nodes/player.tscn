@@ -1,10 +1,12 @@
-[gd_scene load_steps=15 format=3 uid="uid://cdbxpauih6rdh"]
+[gd_scene load_steps=17 format=3 uid="uid://cdbxpauih6rdh"]
 
 [ext_resource type="Script" path="res://scripts/nodes/player.gd" id="1_i5wws"]
 [ext_resource type="Texture2D" uid="uid://cm6rr746va5qf" path="res://textures/entities/player.png" id="3_8gjlq"]
-[ext_resource type="AudioStream" uid="uid://57cce450pgjc" path="res://sounds/item_pickup.wav" id="3_m4kv2"]
+[ext_resource type="AudioStream" uid="uid://xlb2s7b45fpc" path="res://sounds/misc/coin_pickup.wav" id="3_y5t7n"]
 [ext_resource type="PackedScene" uid="uid://cnrs2rondihqh" path="res://nodes/hurt_box.tscn" id="5_uhg0a"]
+[ext_resource type="AudioStream" uid="uid://dyhqwlcrojsg3" path="res://sounds/misc/hit5.wav" id="6_jo0pg"]
 [ext_resource type="PackedScene" uid="uid://ufktyx8vw7em" path="res://nodes/gui/player_inventory_interface.tscn" id="6_mywwb"]
+[ext_resource type="AudioStream" uid="uid://veox7v48kwlt" path="res://sounds/16_human_walk_stone_2.wav" id="7_c50yi"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_s4a3s"]
 radius = 3.0
@@ -58,6 +60,20 @@ tracks/0/keys = {
 "update": 1,
 "values": [4, 5, 6, 7]
 }
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_play_walk_sound"
+}]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_guhtt"]
 _data = {
@@ -100,11 +116,6 @@ libraries = {
 "": SubResource("AnimationLibrary_guhtt")
 }
 
-[node name="ItemPickupSound" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("3_m4kv2")
-panning_strength = 3.0
-area_mask = 16
-
 [node name="Hand" type="Marker2D" parent="."]
 unique_name_in_owner = true
 position = Vector2(0, -7)
@@ -127,6 +138,7 @@ collision_mask = 96
 shape = SubResource("CircleShape2D_roweo")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 2
 
 [node name="PlayerInventoryInterface" parent="CanvasLayer" node_paths=PackedStringArray("player") instance=ExtResource("6_mywwb")]
 unique_name_in_owner = true
@@ -145,6 +157,16 @@ theme_override_styles/background = SubResource("StyleBoxFlat_xurj0")
 theme_override_styles/fill = SubResource("StyleBoxFlat_hosa8")
 value = 50.0
 show_percentage = false
+
+[node name="ItemPickupSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_y5t7n")
+area_mask = 16
+
+[node name="Hit" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_jo0pg")
+
+[node name="Walk" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_c50yi")
 
 [connection signal="hurt" from="HurtBox" to="." method="_on_hurt_box_hurt"]
 [connection signal="area_entered" from="InteractArea" to="." method="_on_interact_entered"]

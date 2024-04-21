@@ -66,7 +66,7 @@ func find_item_by_id(item_id: String, quantity:=1) -> int:
         if not slot.is_empty():
             if slot.item.id == item_id and slot.quantity >= quantity:
                 return slot.index
-    return - 1
+    return -1
 
 func pick_item(slot_index: int) -> Slot:
     var slot: Slot = items[slot_index].duplicate()

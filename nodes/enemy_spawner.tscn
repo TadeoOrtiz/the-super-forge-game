@@ -12,12 +12,12 @@ enemy = ExtResource("2_aarlh")
 enemy_num = 1
 enemy_spawn_delay = 0
 
-[node name="EnemySpawner" type="Node" node_paths=PackedStringArray("player")]
+[node name="EnemySpawner" type="Node"]
 script = ExtResource("1_dth42")
 spawns = Array[ExtResource("3_kmmnp")]([SubResource("Resource_caq2p")])
-player = NodePath("")
 
 [node name="Timer" type="Timer" parent="."]
+wait_time = 0.1
 autostart = true
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

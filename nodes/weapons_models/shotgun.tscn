@@ -1,0 +1,146 @@
+[gd_scene load_steps=8 format=3 uid="uid://oytivm2ngemt"]
+
+[ext_resource type="Texture2D" uid="uid://6dojtxt2q8jv" path="res://textures/weapons/shotgun.png" id="1_v7ntp"]
+[ext_resource type="Script" path="res://scripts/weapons/shotgun.gd" id="2_a8w7x"]
+[ext_resource type="AudioStream" uid="uid://gmbnt6ye3jn6" path="res://sounds/weapons/shoot1.wav" id="3_ogrgw"]
+[ext_resource type="AudioStream" uid="uid://dtuu1ippnxdcy" path="res://sounds/weapons/shotgun_pump1.wav" id="4_oj8qy"]
+
+[sub_resource type="Animation" id="Animation_5w54q"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(16, -8)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Shoot:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Reload:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_ixaxe"]
+resource_name = "shoot"
+length = 1.00001
+step = 0.0125
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.025, 0.125, 0.1375, 0.6, 0.7625, 1),
+"transitions": PackedFloat32Array(1, 4.43828, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(16, -8), Vector2(12, -12), Vector2(7, -12), Vector2(16, -8), Vector2(16, -8), Vector2(6, -8), Vector2(16, -8)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.125, 0.1375, 0.6, 0.7625, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.523599, 0.0, 0.0, 0.0, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Shoot:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Reload:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.6),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_u0l3o"]
+_data = {
+"RESET": SubResource("Animation_5w54q"),
+"shoot": SubResource("Animation_ixaxe")
+}
+
+[node name="Shotgun" type="Sprite2D" node_paths=PackedStringArray("bullet_position")]
+position = Vector2(16, -8)
+texture = ExtResource("1_v7ntp")
+script = ExtResource("2_a8w7x")
+bullet_position = [NodePath("Marker2D"), NodePath("Marker2D2"), NodePath("Marker2D3")]
+attack_animation = "shoot"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_u0l3o")
+}
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(15, 1)
+rotation = -0.261799
+
+[node name="Marker2D2" type="Marker2D" parent="."]
+position = Vector2(15, 2)
+
+[node name="Marker2D3" type="Marker2D" parent="."]
+position = Vector2(15, 3)
+rotation = 0.261799
+
+[node name="Shoot" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_ogrgw")
+volume_db = -10.0
+
+[node name="Reload" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_oj8qy")

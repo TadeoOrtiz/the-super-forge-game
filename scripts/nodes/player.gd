@@ -1,6 +1,8 @@
 class_name Player
 extends CharacterBody2D
 
+signal entity_death
+
 @export var speed: float = 100.0
 @export var max_health: float = 100.0:
 	set(value):
@@ -10,10 +12,12 @@ extends CharacterBody2D
 # Public vars
 var inventory := Inventory.new(12, Item.SLOT_TYPE.Default)
 var weapons_inventory := Inventory.new(6, Item.SLOT_TYPE.Weapons)
+var current_weapon: WeaponModel
 
 # Private vars
 var _pointing_direction: Vector2
 var _interactable_nearby: Array[Node]
+var _death: bool
 
 # Onready vars
 @onready var hand: Marker2D = %Hand
@@ -22,12 +26,17 @@ var _interactable_nearby: Array[Node]
 
 @onready var inventory_interface: PlayerInventoryInterface = %PlayerInventoryInterface
 @onready var health_bar: ProgressBar = %HealthBar
-
+@onready var walk_sound: AudioStreamPlayer2D = $Walk
 
 @onready var health: float = max_health:
 	set(value):
 		health = value
+		health = clampf(health, 0, max_health) 
+		print("PLAYER HEALTH: ", health)
 		health_bar.value = health
+		if health <= 0:
+			_death = true
+			entity_death.emit()
 
 #region Built-in Methods
 
@@ -36,8 +45,10 @@ func _ready():
 	health_bar.value = health
 
 func _physics_process(_delta: float) -> void:
-	var direction := Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
+	if _death:
+		return
 	
+	var direction := Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 	
 	if hand.get_children().size() > 0:
 		_pointing_direction = get_global_mouse_position() - global_position
@@ -109,19 +120,37 @@ func _on_interact_exited(interactable: Node) -> void:
 		_interactable_nearby.erase(interactable)
 
 func _on_hurt_box_hurt(value: float):
+	$Hit.play()
 	var tween := create_tween()
 	%Sprite.modulate = Color(15, 15, 15, 1)
 	tween.tween_property(self, "health", health - value, 0.25)
 	tween.parallel().tween_property(%Sprite, "modulate", Color(1, 1, 1, 1), 0.1)
 
+func _play_walk_sound():
+	walk_sound.pitch_scale = randf_range(0.9, 1.1)
+	walk_sound.play()
 
 func _spawn_weapon_model(inv_index: int):
-	for child in hand.get_children():
-		child.queue_free()
+	if hand.get_child_count() > 1:
+		for i in range(1, hand.get_children().size()):
+			hand.get_child(i).queue_free()
 	
 	if weapons_inventory.items[inv_index].item:
+		if current_weapon:
+			if current_weapon.item_id == weapons_inventory.items[inv_index].item.id:
+				return
+		if hand.get_child_count() > 0:
+			hand.get_child(0).queue_free()
 		var weapon: WeaponModel = weapons_inventory.items[inv_index].item.model.instantiate()
 		weapon.dispersion = weapons_inventory.items[inv_index].item.dispersion
+		weapon.item_id = weapons_inventory.items[inv_index].item.id
 		weapon.shoot_type = weapons_inventory.items[inv_index].item.shoot_type
+		weapon.bullet = weapons_inventory.items[inv_index].item.bullet
+		current_weapon = weapon
 		hand.add_child(weapon)
+	else:
+		for child in hand.get_children():
+			child.queue_free()
+			current_weapon = null
+	
 #endregion

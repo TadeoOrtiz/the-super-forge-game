@@ -1,0 +1,38 @@
+[gd_resource type="Resource" script_class="ItemRecipe" load_steps=11 format=3 uid="uid://b6pcobale8iw6"]
+
+[ext_resource type="Script" path="res://scripts/resources/item_recipe.gd" id="1_5fxq7"]
+[ext_resource type="Resource" uid="uid://mlm67oia7q4x" path="res://items/rifle_8v.tres" id="1_c15va"]
+[ext_resource type="Script" path="res://scripts/resources/slot.gd" id="2_ahou8"]
+[ext_resource type="Resource" uid="uid://8js2lpcgt3dr" path="res://items/materials/copper.tres" id="3_fyssv"]
+[ext_resource type="Resource" uid="uid://ddd5pmp8vfwa5" path="res://items/materials/iron.tres" id="4_4ysbs"]
+[ext_resource type="Resource" uid="uid://c7sw2fle6gwth" path="res://items/rifle_15v.tres" id="5_is7g5"]
+
+[sub_resource type="Resource" id="Resource_054yr"]
+script = ExtResource("2_ahou8")
+item = ExtResource("1_c15va")
+quantity = 2
+slot_type = 0
+
+[sub_resource type="Resource" id="Resource_jniw0"]
+script = ExtResource("2_ahou8")
+item = ExtResource("3_fyssv")
+quantity = 25
+slot_type = 0
+
+[sub_resource type="Resource" id="Resource_nli16"]
+script = ExtResource("2_ahou8")
+item = ExtResource("4_4ysbs")
+quantity = 25
+slot_type = 0
+
+[sub_resource type="Resource" id="Resource_da3v6"]
+script = ExtResource("2_ahou8")
+item = ExtResource("5_is7g5")
+quantity = 1
+slot_type = 0
+
+[resource]
+script = ExtResource("1_5fxq7")
+recipe_name = "Rifle 15v"
+ingredients = Array[ExtResource("2_ahou8")]([SubResource("Resource_054yr"), SubResource("Resource_jniw0"), SubResource("Resource_nli16")])
+results = Array[ExtResource("2_ahou8")]([SubResource("Resource_da3v6")])

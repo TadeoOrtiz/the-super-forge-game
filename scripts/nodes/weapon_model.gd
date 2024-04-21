@@ -4,9 +4,10 @@ extends Sprite2D
 @export var bullet_position : Array[Marker2D]
 @export var attack_animation: String
 
-
+var item_id: String
 var shoot_type: Weapon.SHOOT_TYPE
 var dispersion: float
+var bullet: PackedScene
 
 @onready var anim_player: AnimationPlayer =  $AnimationPlayer
 
@@ -20,11 +21,11 @@ func on_attack():
 
 func spawn_bullet():
 	for bullet_pos in bullet_position:
-		var bullet = load("res://nodes/bullet.tscn").instantiate()
-		bullet.position = bullet_pos.global_position
-		bullet.rotation = get_parent().rotation + deg_to_rad(randf_range(-dispersion, dispersion))
-		bullet.set_as_top_level(true)
-		add_sibling(bullet)
+		var _bullet = bullet.instantiate()
+		_bullet.position = bullet_pos.global_position
+		_bullet.rotation = get_parent().rotation + deg_to_rad(randf_range(-dispersion, dispersion)) + bullet_pos.rotation
+		_bullet.set_as_top_level(true)
+		get_parent().add_sibling(_bullet)
 
 func _attack():
 	if not anim_player.is_playing():

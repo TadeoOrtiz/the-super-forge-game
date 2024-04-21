@@ -11,11 +11,14 @@ const SLOT = preload ("res://nodes/gui/inventory_slot.tscn")
 func add_recipe(recipe: ItemRecipe) -> void:
 	recipe_list.add_item(recipe.recipe_name)
 
-func _on_recipe_list_item_selected(index: int):
+func clear_crafting():
 	for child in ingredients_container.get_children():
 		child.queue_free()
 	for child in result_container.get_children():
 		child.queue_free()
+
+func _on_recipe_list_item_selected(index: int):
+	clear_crafting()
 
 	var recipe: ItemRecipe = ResourcesManager.ITEMS_RECIPES_RESOURCE.load_all()[index]
 	for ingredient: Slot in recipe.ingredients:

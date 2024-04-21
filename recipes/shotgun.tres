@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="ItemRecipe" load_steps=7 format=3 uid="uid://bxbtpi7ijw4tc"]
+
+[ext_resource type="Resource" uid="uid://ddd5pmp8vfwa5" path="res://items/materials/iron.tres" id="1_0xtnf"]
+[ext_resource type="Script" path="res://scripts/resources/item_recipe.gd" id="1_217sl"]
+[ext_resource type="Script" path="res://scripts/resources/slot.gd" id="2_ve0pu"]
+[ext_resource type="Resource" uid="uid://c44safbmw7dxn" path="res://items/shotgun.tres" id="4_6itp6"]
+
+[sub_resource type="Resource" id="Resource_filh6"]
+script = ExtResource("2_ve0pu")
+item = ExtResource("1_0xtnf")
+quantity = 25
+slot_type = 0
+
+[sub_resource type="Resource" id="Resource_ik2js"]
+script = ExtResource("2_ve0pu")
+item = ExtResource("4_6itp6")
+quantity = 1
+slot_type = 0
+
+[resource]
+script = ExtResource("1_217sl")
+recipe_name = "Shotgun"
+ingredients = Array[ExtResource("2_ve0pu")]([SubResource("Resource_filh6")])
+results = Array[ExtResource("2_ve0pu")]([SubResource("Resource_ik2js")])

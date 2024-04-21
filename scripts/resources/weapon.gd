@@ -7,5 +7,6 @@ enum SHOOT_TYPE{
 }
 
 @export var model: PackedScene
+@export var bullet: PackedScene
 @export var dispersion: float
 @export var shoot_type := SHOOT_TYPE.SemiAuto

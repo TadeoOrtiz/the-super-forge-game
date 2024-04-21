@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="Weapon" load_steps=5 format=3 uid="uid://c7sw2fle6gwth"]
+
+[ext_resource type="PackedScene" uid="uid://ddcehs84yifwm" path="res://nodes/bullets/super_bullet.tscn" id="1_5hv51"]
+[ext_resource type="Texture2D" uid="uid://bboqg2hyvmouy" path="res://textures/weapons/rifle_02.png" id="2_bvdap"]
+[ext_resource type="PackedScene" uid="uid://ybcjryj67qls" path="res://nodes/weapons_models/rifle_02.tscn" id="3_saokv"]
+[ext_resource type="Script" path="res://scripts/resources/weapon.gd" id="4_dyehy"]
+
+[resource]
+script = ExtResource("4_dyehy")
+model = ExtResource("3_saokv")
+bullet = ExtResource("1_5hv51")
+dispersion = 1.0
+shoot_type = 1
+id = "rifle_15v"
+name = "Rifle 15v"
+is_stackeable = false
+icon = ExtResource("2_bvdap")
+slot_type = 1
