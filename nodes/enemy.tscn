@@ -201,12 +201,14 @@ height = 18.0
 size = Vector2(8.5, 10.75)
 
 [node name="Enemy" type="CharacterBody2D"]
-disable_mode = 1
 collision_layer = 256
 collision_mask = 257
+motion_mode = 1
+slide_on_ceiling = false
 safe_margin = 1.0
 script = ExtResource("1_vthjg")
 health = 10.0
+speed = null
 loot = Array[Resource("res://scripts/resources/item.gd")]([ExtResource("2_pi6te"), ExtResource("2_pi6te")])
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

@@ -17,6 +17,7 @@ const ENEMY_SPAWENER: PackedScene = preload ("res://nodes/enemy_spawner.tscn")
 var _current_round: int = 1
 var _current_enemy_counter: int
 var _current_time: int = 1
+var _enemy_array: Array[Enemy]
 
 var player: Player
 var camera: Camera2D
@@ -56,6 +57,15 @@ func _ready():
 func _process(_delta) -> void:
 	debug_label.text = "ROUND \n" + str(_current_round) + "/" + str(max_round)
 
+func _physics_process(delta):
+	for enemy: Enemy in _enemy_array:
+		enemy.velocity = (player.global_position - enemy.global_position).normalized() * enemy.speed
+		if (player.global_position - enemy.global_position).normalized().x > 0:
+			enemy.sprite.scale.x = 1
+		else:
+			enemy.sprite.scale.x = -1
+		enemy.move_and_slide()
+
 func _unhandled_key_input(event):
 	if event.is_action_pressed("pause_game"):
 		%PauseMenu.label.text = "Pause"
@@ -69,9 +79,10 @@ func spawn_enemies():
 					var counter = 0
 					while counter < info.enemy_interval:
 						var enemy_spawn = info.enemy.instantiate()
-						enemy_spawn.entity_death.connect(_clear_enemies)
+						enemy_spawn.entity_death.connect(_clear_enemies.bind(enemy_spawn))
 						enemy_spawn.global_position = _get_random_position()
 						add_child(enemy_spawn, true)
+						_enemy_array.append(enemy_spawn)
 						_current_enemy_counter += 1
 						counter += 1
 	
@@ -104,8 +115,9 @@ func _change_round():
 	_current_round += 1
 	_current_time = 1
 
-func _clear_enemies():
+func _clear_enemies(enemy_reference: Enemy):
 	_current_enemy_counter -= 1
+	_enemy_array.erase(enemy_reference)
 
 func _get_random_position():
 	var vpr = get_viewport_rect().size * randf_range(1.1, 1.4)

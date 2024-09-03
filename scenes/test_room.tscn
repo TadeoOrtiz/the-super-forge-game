@@ -17,7 +17,7 @@
 [sub_resource type="Resource" id="Resource_4l2sj"]
 script = ExtResource("4_n1y0t")
 enemy = ExtResource("4_lfnn6")
-enemy_interval = 1
+enemy_interval = 50
 round_spawn = Array[int]([1])
 time_start = 0
 time_end = 60
@@ -64,6 +64,7 @@ max_round = 3
 time_per_round = 15
 round_time = 60
 spawn = Array[ExtResource("4_n1y0t")]([SubResource("Resource_4l2sj"), SubResource("Resource_yslbq"), SubResource("Resource_o5w2q"), SubResource("Resource_c6jw0")])
+max_enemy_counter = 200
 debug = true
 
 [node name="Player" parent="." instance=ExtResource("1_cjdlg")]
